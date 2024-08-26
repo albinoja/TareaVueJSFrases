@@ -49,6 +49,8 @@
                 <div v-if="msg" :class="msgTipo">{{ msg }}</div>
             </div>
 
+            <div><h1>Contador de frases {{frases.length}}</h1></div>
+
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
@@ -98,7 +100,7 @@
                                     class="form-control" />
                             </div>
                         </div>
-                        <div v-if="msg" :class="msgTipo">{{ msg }}</div>
+                        <div v-if="msg" :class="msgTipoEdit">{{ msgEdit }}</div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary"
                                 data-bs-dismiss="modal">Cerrar</button>

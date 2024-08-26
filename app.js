@@ -31,6 +31,8 @@ const App = createApp({
     const nuevaFrase = ref("");
     const nuevoAutor = ref("");
     const msg = ref("");
+    const msgEdit = ref("");
+    const msgTipoEdit = ref("");
     const msgTipo = ref("");
     const fraseEditada = ref({ frase: "", autor: "" });
     const indiceEditado = ref(null);
@@ -129,8 +131,8 @@ const App = createApp({
         msg.value = "Modificado correctamente";
         msgTipo.value = "alert alert-success";
       } else {
-        msg.value = "Ingrese todos los datos";
-        msgTipo.value = "alert alert-danger";
+        msgEdit.value = "Ingrese todos los datos";
+        msgTipoEdit.value = "alert alert-danger";
       }
     };
 
@@ -148,6 +150,8 @@ const App = createApp({
       guardarCambios,
       msg,
       msgTipo,
+      msgEdit,
+      msgTipoEdit,
     };
   },
 });

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Vue.js App</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+            crossorigin="anonymous">
+        <link rel="stylesheet" href="./frases.css">
+
+    </head>
+    <body>
+        <div class="caratula">
+            <img src="./Logo.png" alt="Logo">
+            <h1>UNIVERSIDAD LUTERANA SALVADOREÑA</h1>
+            <h2>FACULTAD DE CIENCIAS DEL HOMBRE Y LA NATURALEZA</h2>
+            <h2>LICENCIATURA EN CIENCIAS DE LA COMPUTACIÓN</h2>
+        </div>
+        <div id="myapp" class="container">
+            <div class="mb-4">
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="floatingInput">Agrega una Frase:</label>
+                        <input v-model="nuevaFrase"
+                            placeholder="Escribe una frase"
+                            class="form-control" />
+                    </div>
+                    <div class="col">
+                        <label for="authorInput">Agrega un autor:</label>
+                        <input v-model="nuevoAutor"
+                            @keypress.enter="agregarFrase"
+                            placeholder="Escribe el autor"
+                            class="form-control" />
+                    </div>
+                </div>
+                <div class="d-flex gap-2 mb-3">
+                    <button @click="agregarFraseAlInicio"
+                        class="btn btn-success">Agregar al Inicio</button>
+                    <button @click="agregarFrase"
+                        class="btn btn-primary">Agregar al Final</button>
+                    <button @click="agregarFraseAleatoriamente"
+                        class="btn btn-info">Agregar Aleatoriamente</button>
+                    <button @click="reiniciarFrases"
+                        class="btn btn-secondary">Reiniciar Frases</button>
+                </div>
+                <div v-if="msg" :class="msgTipo">{{ msg }}</div>
+            </div>
+
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Frase</th>
+                        <th>Autor</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(item, index) in frases" :key="index">
+                        <td>{{ item.frase }}</td>
+                        <td>{{ item.autor }}</td>
+                        <td>
+                            <button @click="editarFrase(index)"
+                                class="btn btn-warning btn-sm">Editar</button>
+                            <button @click="eliminarFrase(index)"
+                                class="btn btn-danger btn-sm">Eliminar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="modal fade" id="editModal" tabindex="-1"
+                aria-labelledby="editModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editModalLabel">Editar
+                                Frase</h5>
+                            <button type="button" class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="editFrase"
+                                    class="form-label">Frase</label>
+                                <input type="text" id="editFrase"
+                                    v-model="fraseEditada.frase"
+                                    class="form-control" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="editAutor"
+                                    class="form-label">Autor</label>
+                                <input type="text" id="editAutor"
+                                    v-model="fraseEditada.autor"
+                                    class="form-control" />
+                            </div>
+                        </div>
+                        <div v-if="msg" :class="msgTipo">{{ msg }}</div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary"
+                                data-bs-dismiss="modal">Cerrar</button>
+                            <button type="button" @click="guardarCambios"
+                                class="btn btn-primary">Guardar cambios</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script
+            src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.js"></script>
+        <script src="app.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+    </body>
+</html>
